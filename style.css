@@ -1,0 +1,39 @@
+body
+ {
+  background: url(paper.png); 
+ }
+
+ form 
+  {
+    border-style: solid;
+    padding: 20px;
+    width: 20%;
+  }
+
+  input[type=text]
+  {
+    width: 90px;
+  }
+
+  input 
+  {
+    margin: 5px;
+  }
+
+  p
+  {
+    margin: 20px;
+    width: 40%;
+    font-size:18px;
+    
+  }
+
+   @media only screen and (max-width: 800px) {
+
+form
+{
+padding: 10px;
+width: 40%;
+}
+  
+p
