@@ -7,6 +7,13 @@ function checkInput()
   var blanks = 0;
 
  for (x = 1; x < fields.length; x++) { 
+ var wordType = $("#" + x + "i").parent().text();
+      console.log(wordType);
+  if (wordType == "FAMOUS PERSON: " && $("#" + x + "i").val().match(/^[A-Z]/) == false)
+      {
+        errors.push("Names must start with capital letter");
+      }
+
     if ($("#" + x + "i").val() == "")
     {
       console.log("blank field");
@@ -14,29 +21,21 @@ function checkInput()
       blanks++;
       {break;}
       //break ensures a lot of error messages don't show up
-      //but now how do I ensure the program keeps going
-      //if there are no breaks?
+      
     }
-    if (blanks == 0)
+      
+      
+    }
+
+    //regex check does not work, everything else runs smoothly, however.
+    if (errors.length < 0)
       {
-        transMadLibsGather()
+        alert(errors);
       }
-
-
-
-
-      //CHECK IF INPUT MATCHES WORD TYPE
-      //checks the word before the field
-      // var wordType = $("#" + x + "i").parent().text();
-      // console.log(wordType);
-
-      // //if its a certain wordtype and meets a certain condition,
-      // //push an error to the errors array
-      // if (wordType == "NOUN: " && $("#" + x + "i").val() == somecondition)
-      // {
-      //   errors.push("this is the error");
-      // }
-    } 
+       else if (blanks == 0  && errors.length == 0)
+      {
+        transMadLibsGather();
+      }
 }
 
 
@@ -50,7 +49,7 @@ function transMadLibsGather()
       console.log(localStorage.getItem("localInput" + x));
     }
 
-    window.location.href = $("#urlHolder").text();
+    window.location.href = $(".urlHolder").text();
     //wow!  This works if you get rid of the form thing
   }
 
