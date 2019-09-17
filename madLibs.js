@@ -9,7 +9,14 @@ function checkInput()
  for (x = 1; x < fields.length; x++) { 
  var wordType = $("#" + x + "i").parent().text();
       console.log(wordType);
-  if (wordType == "FAMOUS PERSON: " && $("#" + x + "i").val().match(/^[A-Z]/) == false)
+  if (wordType == "FAMOUS PERSON: " && $("#" + x + "i").val().match("^[A-Z]") == false)
+    //switching the && to an || results in a strange problem.  It seems it adds to the
+  //error array because it does not go to the appropriate page, but no alert shows up.
+  //but I did try to fix the regEx algorithim by taking from "regEx Tomfollery"
+  //yet the check still does not work, even when I capitalize it and switch all the letters
+  
+
+
       {
         errors.push("Names must start with capital letter");
       }
@@ -30,7 +37,7 @@ function checkInput()
     //regex check does not work, everything else runs smoothly, however.
     if (errors.length < 0)
       {
-        alert(errors);
+        alert(errors.join('\n'));
       }
        else if (blanks == 0  && errors.length == 0)
       {
