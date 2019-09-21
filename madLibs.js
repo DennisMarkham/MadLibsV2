@@ -53,6 +53,7 @@ function checkInput()
     if (errors.length > 0)
       {
         alert(errors.join('\n'));
+        errors = [];
       }
        else
       {
