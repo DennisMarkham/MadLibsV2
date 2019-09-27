@@ -30,17 +30,22 @@ function checkInput()
     errors.push("Leave punctuation marks out of answers.")
   }
 
-    if ($("#" + x + "i").val() == "")
+  if ($("#" + x + "i").val() == "")
     {
       console.log("blank field");
     
       errors.push("Blank field")
-      {break;}
-      //break supposed to ensure "blank field" only shows up but doesn't reall work
+
       
     }
       
-      
+//if there are two or more periods in a row
+if (/[.{2,}]/.test(input))
+{
+errors.push("Two periods or decimals in a row")
+}      
+
+
     }
 
     //regex check does not work, everything else runs smoothly, however.
