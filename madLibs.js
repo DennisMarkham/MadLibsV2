@@ -1,29 +1,32 @@
+
+
+//creates an array of errors to be displayed
 var errors = [];
 
 function checkInput()
 {
-  //logs number of input fields
+  //logs number of input fields for forloop
   var fields = document.querySelectorAll("span");
+
+  //stores number of blank fields
   var blanks = 0;
 
- for (x = 1; x < fields.length; x++) { 
+ for (x = 1; x < fields.length + 1; x++) {  
  var wordType = $("#" + x + "i").parent().text();
  var input = $("#" + x + "i").val();
       console.log(wordType);
       console.log(input);
   if (wordType == "FAMOUS PERSON: " && /^[A-Z]/.test(input) == false  && input != "")
-    
-  // adding "+1" initially made maliIn functional but mcDonaldsIn non-functional (even after fixing)
-    //that 4o id problem.  Getting rid of it made both functional. Interesting.
       {
         errors.push("Names must start with capital letter");
       }
 
 
-  if (wordType != "FAMOUS PERSON: "  && wordType != "COUNTRY: " && /[A-Z]/.test(input))
-  {
-    errors.push("Only the first letter of a proper-noun should be capitalized")
-  }    
+  // if (wordType != "FAMOUS PERSON: "  && wordType != "COUNTRY: " && /[A-Z]/.test(input))
+  // {
+  //   errors.push("Only the first letter of a proper-noun should be capitalized")
+  // }    
+  //this is just too anal.  Decided after I got this error for capitalizing a state
 
   if (/[!?]/.test(input))
   {
@@ -33,10 +36,10 @@ function checkInput()
   if ($("#" + x + "i").val() == "")
     {
       console.log("blank field");
-    
-      errors.push("Blank field")
 
-      
+      blanks++
+
+      //I used to push each blank as an individual error in the array, no longer
     }
       
 //if there are two or more periods in a row
@@ -48,15 +51,18 @@ errors.push("Two periods or decimals in a row")
 
     }
 
-    //regex check does not work, everything else runs smoothly, however.
-    //alright, this was all so bizarre.  Remember you flipped the sign.
-    //that means before...OH!  Either way it goes down to the else-if 
-    //statement!  That explains it.
-
-    //okay, now I'm uploading this to git, and after this we are going to 
-    //make "blanks" just another error
-    if (errors.length > 0)
+    //I updated this to smooth it out.  Now instead of saying "blank field" for every blank,
+    //it just displays the number of blanks
+    if (errors.length > 0  || blanks > 0)
       {
+        
+        //if there are no errors, but there are "blanks", it creates an error based on the number
+        //of blanks
+        if (blanks > 0)
+        {
+          errors.push(blanks + " blank field(s)");
+        }
+
         alert(errors.join('\n'));
         errors = [];
       }
