@@ -3,6 +3,16 @@
 //creates an array of errors to be displayed
 var errors = [];
 
+
+function errorDeco(x)
+{
+$("#" + x + "i").css("background-color", "hsl(0, 30%, 80%)");
+}
+
+$("input").focus(function(){
+  $(this).css("background-color", "white");
+});
+
 function checkInput()
 {
   //logs number of input fields for forloop
@@ -19,6 +29,7 @@ function checkInput()
   if (wordType == "FAMOUS PERSON: " && /^[A-Z]/.test(input) == false  && input != "")
       {
         errors.push("Names must start with capital letter");
+        errorDeco(x);
       }
 
 
@@ -31,12 +42,13 @@ function checkInput()
   if (/[!?]/.test(input))
   {
     errors.push("Leave punctuation marks out of answers.")
+    errorDeco(x);
   }
 
   if ($("#" + x + "i").val() == "")
     {
       console.log("blank field");
-
+      errorDeco(x);
       blanks++
 
       //I used to push each blank as an individual error in the array, no longer
@@ -46,6 +58,7 @@ function checkInput()
 if (/[.{2,}]/.test(input))
 {
 errors.push("Two periods or decimals in a row")
+errorDeco(x);
 }      
 
 
